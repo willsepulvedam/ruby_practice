@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'sqlite3'
+
 # Description/Explanation of Person class
 class Career
   attr_accessor :id, :name, :price, :subjects
@@ -92,4 +94,6 @@ class Subject
     db.execute('SELECT * FROM subjects WHERE career_id = ?', career_id)
     subjects
   end
+  db.close if db
 end
+
