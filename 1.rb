@@ -1,107 +1,107 @@
+# frozen_string_literal: true
+
+
 @materias = []
 @carreras = []
 @precios = {}
 
-def mostrarMenus()
-    puts "Bienvenido al sistema de universidades."
-    puts "Por favor, seleccione una opción:"
-    puts "1. Ver materias disponibles."
-    puts "2. Agregar materia."
-    puts "3. Ver carreras disponibles."
-    puts "4. Agregar carrera."
-    puts "5. Ver precio de carrera."
-    puts "6. Cancelar materia."
-    puts "7. Salir."
+def mostrar_menus
+  puts 'Bienvenido al sistema de universidades.'
+  puts 'Por favor, seleccione una opción:'
+  puts '1. Ver materias disponibles.'
+  puts '2. Agregar materia.'
+  puts '3. Ver carreras disponibles.'
+  puts '4. Agregar carrera.'
+  puts '5. Ver precio de carrera.'
+  puts '6. Cancelar materia.'
+  puts '7. Salir.'
 end
 
-def verMaterias()
-    if Array.length(materias) == 0
-        puts "No hay materias disponibles."
-        
-    else
-        puts "Las materias disponibles son:"
-        for materia in materias
-            puts (materia)
-            
-        end
-        
+def ver_materias
+  if Array.length(@materias).zero?
+    puts 'No hay materias disponibles.'
+
+  else
+    puts 'Las materias disponibles son:'
+    @materias.each do |materia|
+      puts(materia)
     end
+
+  end
 end
 
-def agregarMateria()
-    puts "Por favor, ingrese el nombre de la nueva materia: "
-    nuevaMateria = gets
-    materias.append(nuevaMateria)
-    puts "La materia ha sido agregada exitosamente."
+def agregar_materia
+  puts 'Por favor, ingrese el nombre de la nueva materia: '
+  nueva_materia = gets
+  @materias.append(nueva_materia)
+  puts 'La materia ha sido agregada exitosamente.'
 end
 
-def verCarreras()
-    if Array.length(carreras) == 0
-        puts "No hay carreras disponibles."
-        
-    else
-        puts "Las carreras disponibles son:"
-        for carrera in carreras
-            puts (carrera)
-            
-        end
-        
+def ver_carreras
+  if Array.length(@carreras).zero?
+    puts 'No hay carreras disponibles.'
+
+  else
+    puts 'Las carreras disponibles son:'
+    @carreras.each do |carrera|
+      puts(carrera)
     end
+
+  end
 end
 
-def agregarCarrera()
-    puts "Por favor, ingrese el nombre de la nueva carrera: "
-    nuevaCarrera = gets
-    puts "Por favor, ingrese el precio de la carrera: "
-    precioCarrera = gets
-    carreras.append(nuevaCarrera)
-    precios[nuevaCarrera] = precioCarrera
-    puts "La carrera ha sido agregada exitosamente."
+def agregar_carrera # rubocop:disable Lint/RedundantCopDisableDirective
+  puts 'Por favor, ingrese el nombre de la nueva carrera: '
+  nueva_carrera = gets
+  puts 'Por favor, ingrese el precio de la carrera: '
+  precio_carrera = gets
+  @carreras.append(nueva_carrera)
+  @precios[nueva_carrera] = precio_carrera
+  puts 'La carrera ha sido agregada exitosamente.'
 end
 
-def verPrecioCarrera()
-    puts "Por favor, ingrese el nombre de la carrera: "
-    carrera = gets
-    if carrera in precios
-        puts "El precio de la carrera es: " + precios[carrera]
-    else
-        puts "la carrera no existe."
-    end
+def ver_precio_carrera
+  puts 'Por favor, ingrese el nombre de la carrera: '
+  carrera = gets
+  if carrera n @precios
+    puts "El precio de la carrera es: #{precios[carrera]}"
+  else
+    puts 'la carrera no existe.'
+  end
 end
 
-
-def cancelarMateria()
-    puts "Por favor, ingrese el nombre de la materia a cancelar: "
-    materia = gets
-    if materia in materias
-        materias.remove(materia)
-        puts "La materia ha sido cancelada exitosamente."
-    else
-        puts "la materia no existe."
-    
-    end
+def cancelar_materia
+  puts 'Por favor, ingrese el nombre de la materia a cancelar: '
+  materia = gets
+  if materia n @materias
+    @materias.remove(materia)
+    puts 'La materia ha sido cancelada exitosamente.'
+  else
+    puts 'la materia no existe.'
+  end
 end
 
-while true
-    mostrarMenus()
-    puts "Opción seleccionada: "
-    opcion = gets
+loop do
+  mostrar_menus
+  puts 'Opción seleccionada: '
+  opcion = gets.chomp.to_i
 
-    if opcion == "1"
-        verMaterias()
-    elsif opcion == "2"
-        agregarMateria()
-    elsif opcion == "3"
-        verCarreras()
-    elsif opcion == "4"
-        agregarCarrera()
-    elsif opcion == "5"
-        verPrecioCarrera()
-    elsif opcion == "6"
-        cancelarMateria()
-    elsif opcion == "7"
-        puts "Gracias por utilizar el sistema de universidades."
-    else
-        puts "Opción inválida."
-    end
+  case opcion
+  when 1
+    ver_materias
+  when 2
+    agregar_materia
+  when 3
+    ver_carreras
+  when 4
+    agregar_carrera
+  when 5
+    ver_precio_carrera
+  when 6
+    cancelar_materia
+  when 7
+    puts 'Gracias por utilizar el sistema de universidades.'
+  else
+    puts 'Opción inválida.'
+  end
 end
